@@ -1,33 +1,29 @@
+import { Hotel } from "../../types";
 import { HotelHeader, HotelHeaderProps } from "./HotelHeader";
+import { HotelRoom } from "./HotelRoom/HotelRoom";
 import classes from "./hotels.module.css";
 
-interface HotelProps extends HotelHeaderProps {
-  rooms: object[];
-}
-export function Hotel({ rooms, ...rest }: HotelProps) {
+interface HotelProps extends Hotel {}
+export function Hotel({ rooms, ...headerProps }: HotelProps) {
+  console.log(rooms);
   return (
     <div className={classes.hotels}>
-      <HotelHeader {...rest} />
+      <HotelHeader {...headerProps} />
+      {Array.isArray(rooms)
+        ? rooms?.map((room) => <HotelRoom key={room.id} {...room} />)
+        : null}
     </div>
   );
 }
 
 interface HotelsProps {
-  hotels: any[];
+  hotels: Hotel[];
 }
 export function Hotels({ hotels }: HotelsProps) {
   return (
     <div className={classes.hotels}>
-      {hotels.map(({ name, address1, address2, starRating, images }) => (
-        <Hotel
-          key={name}
-          rooms={[{}]}
-          name={name}
-          address1={address1}
-          address2={address2}
-          starRating={parseInt(starRating)}
-          images={images}
-        />
+      {hotels.map((hotelProps) => (
+        <Hotel key={hotelProps.id} {...hotelProps} />
       ))}
     </div>
   );

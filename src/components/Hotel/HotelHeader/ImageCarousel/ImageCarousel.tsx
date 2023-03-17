@@ -1,7 +1,8 @@
+import { ImageEntity } from "../../../../types";
 import classes from "./imageCarousel.module.css";
 
 interface ImageCarouselProps {
-  images: { url: string; alt?: string }[];
+  images: ImageEntity[];
 }
 
 export function ImageCarousel({ images }: ImageCarouselProps) {
