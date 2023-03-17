@@ -1,0 +1,14 @@
+.hotelHeader {
+  display: flex;
+  padding: 0.5em;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.hotelImageAndDetails {
+  display: flex;
+}
+
+.hotelDetails {
+  margin-left: 0.5em;
+}

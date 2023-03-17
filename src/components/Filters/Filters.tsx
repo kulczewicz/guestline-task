@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StarsFilter } from "../Stars";
+import { StarFilter } from "../Stars";
 import classes from "./filters.module.css";
 
 function decrementIfNonNegative(number: number) {
@@ -53,7 +53,7 @@ export function Filters() {
   return (
     <div className={classes.filtersWrapper}>
       <div className={classes.filters}>
-        <StarsFilter isEditable={true} numberOfStars={3} />
+        <StarFilter numberOfStars={3} />
         <NumberOfVisitors
           type="Adults"
           number={adultsNumber}
