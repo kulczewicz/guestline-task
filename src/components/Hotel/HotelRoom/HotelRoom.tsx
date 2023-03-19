@@ -27,13 +27,13 @@ export function HotelRoom({
 }: HotelRoomProps) {
   return (
     <div className={classes.hotelRoom}>
-      <div className={classes.hotelRoomName}>
-        <h3>{name}</h3>
-        <div>
+      <div className={classes.hotelRoomNameAndVisitors}>
+        <h3 className={classes.hotelRoomName}>{name}</h3>
+        <div className={classes.visitors}>
           <span className={classes.typeOfVisitors}>Adults:</span>{" "}
           <span className={classes.numberOfVisitors}>{maxAdults}</span>
         </div>
-        <div>
+        <div className={classes.visitors}>
           <span className={classes.typeOfVisitors}>Children:</span>{" "}
           <span className={classes.numberOfVisitors}>{maxChildren}</span>
         </div>

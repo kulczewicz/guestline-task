@@ -6,7 +6,7 @@
   border-top: 1px solid rgb(0, 0, 0, 0.1);
 }
 
-.hotelRoomName {
+.hotelRoomNameAndVisitors {
   composes: hotelLeftElement from "../hotels.module.css";
 }
 
@@ -16,6 +16,10 @@
 
 .hotelRoomName {
   margin-bottom: 0.5rem;
+}
+
+.visitors {
+  margin-bottom: 0.25rem;
 }
 
 .typeOfVisitors {
