@@ -29,8 +29,14 @@ export function HotelRoom({
     <div className={classes.hotelRoom}>
       <div className={classes.hotelRoomName}>
         <h3>{name}</h3>
-        <p>Adults: {maxAdults}</p>
-        <p>Children: {maxChildren}</p>
+        <div>
+          <span className={classes.typeOfVisitors}>Adults:</span>{" "}
+          <span className={classes.numberOfVisitors}>{maxAdults}</span>
+        </div>
+        <div>
+          <span className={classes.typeOfVisitors}>Children:</span>{" "}
+          <span className={classes.numberOfVisitors}>{maxChildren}</span>
+        </div>
       </div>
 
       <div className={classes.hotelRoomDescription}>

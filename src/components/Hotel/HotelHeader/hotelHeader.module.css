@@ -1,14 +1,30 @@
 .hotelHeader {
   display: flex;
-  padding: 0.5em;
   width: 100%;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+.hotelHeaderImage {
+  composes: hotelLeftElement from "../hotels.module.css";
+}
+
+.hotelDetailsAndRating {
+  composes: hotelRightElement from "../hotels.module.css";
+  display: flex;
   justify-content: space-between;
 }
 
-.hotelImageAndDetails {
-  display: flex;
+.hotelName {
+  font-size: 1.75rem;
 }
 
-.hotelDetails {
-  margin-left: 0.5em;
+.hotelAddress1 {
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.hotelAddress2 {
+  font-weight: 500;
+  font-size: 1rem;
 }

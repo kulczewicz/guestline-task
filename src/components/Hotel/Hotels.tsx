@@ -5,9 +5,8 @@ import classes from "./hotels.module.css";
 
 interface HotelProps extends Hotel {}
 export function Hotel({ rooms, ...headerProps }: HotelProps) {
-  console.log(rooms);
   return (
-    <div className={classes.hotels}>
+    <div className={classes.hotel}>
       <HotelHeader {...headerProps} />
       {Array.isArray(rooms)
         ? rooms?.map((room) => <HotelRoom key={room.id} {...room} />)

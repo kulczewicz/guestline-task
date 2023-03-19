@@ -3,18 +3,22 @@ import classes from "./stars.module.css";
 
 interface StarSVGProps {
   isOn: boolean;
+  isHoverable?: boolean;
 }
-function StarSVG({ isOn }: StarSVGProps) {
+function StarSVG({ isOn, isHoverable = false }: StarSVGProps) {
+  const hoverableClass = isOn
+    ? classes.starOnHoverable
+    : classes.starOffHoverable;
+  const nonHoverableClass = isOn ? classes.starOn : classes.starOff;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="1.5em"
-      height="1.5em"
+      width="1.5rem"
+      height="1.5rem"
       viewBox="0 0 51 48"
     >
       <path
-        fill={isOn ? "yellow" : "none"}
-        stroke={isOn ? "yellow" : "#000"}
+        className={isHoverable ? hoverableClass : nonHoverableClass}
         strokeWidth="2px"
         d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"
       />
@@ -57,6 +61,7 @@ export function StarFilter({
         <StarButton
           key={number}
           isOn={number <= numberOfStars}
+          isHoverable
           onClick={() => {
             setNumberOfStars(number);
           }}

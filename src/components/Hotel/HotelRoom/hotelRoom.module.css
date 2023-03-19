@@ -1,13 +1,28 @@
+@import "../../../index.css";
+
 .hotelRoom {
   display: flex;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
 }
 
 .hotelRoomName {
-  flex-basis: 0;
-  flex-grow: 1;
+  composes: hotelLeftElement from "../hotels.module.css";
 }
 
 .hotelRoomDescription {
-  flex-basis: 0;
-  flex-grow: 3;
+  composes: hotelRightElement from "../hotels.module.css";
+}
+
+.hotelRoomName {
+  margin-bottom: 0.5rem;
+}
+
+.typeOfVisitors {
+  font-weight: 600;
+}
+
+.numberOfVisitors {
+  font-weight: 500;
+  color: var(--color-text-light);
 }

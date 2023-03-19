@@ -13,15 +13,17 @@ export function HotelHeader({
 }: HotelHeaderProps) {
   return (
     <div className={classes.hotelHeader}>
-      <div className={classes.hotelImageAndDetails}>
+      <div className={classes.hotelHeaderImage}>
         {Array.isArray(images) ? <ImageCarousel images={images} /> : null}
-        <div className={classes.hotelDetails}>
-          <h2>{name}</h2>
-          <p>{address1}</p>
-          <p>{address2}</p>
-        </div>
       </div>
-      <StarRating numberOfStars={parseInt(starRating)} />
+      <div className={classes.hotelDetailsAndRating}>
+        <div>
+          <h2 className={classes.hotelName}>{name}</h2>
+          <p className={classes.hotelAddress1}>{address1}</p>
+          <p className={classes.hotelAddress2}>{address2}</p>
+        </div>
+        <StarRating numberOfStars={parseInt(starRating)} />
+      </div>
     </div>
   );
 }

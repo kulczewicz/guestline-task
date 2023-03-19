@@ -1,8 +1,22 @@
 .hotels {
   max-width: 1024px;
   margin: 0 auto;
+  padding: 0.5rem;
 }
 
 .hotel {
-  width: 100%;
+  composes: box from "../../app.module.css";
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hotelLeftElement {
+  flex-basis: 0;
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+
+.hotelRightElement {
+  flex-basis: 0;
+  flex-grow: 2;
 }

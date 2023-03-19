@@ -1,3 +1,34 @@
+@value color-star-fill: #F59D0F;
+@value color-star-hover: #FFC873;
+
 .stars {
   display: flex;
+}
+
+.starOn {
+  fill: color-star-fill;
+  stroke: color-star-fill;
+}
+
+.starOnHoverable {
+  composes: starOn;
+}
+
+.starOnHoverable:hover {
+  fill: color-star-hover;
+  stroke: color-star-hover;
+}
+
+.starOff {
+  fill: none;
+  stroke: color-star-fill;
+}
+
+.starOffHoverable {
+  composes: starOff;
+}
+
+.starOffHoverable:hover {
+  fill: color-star-hover;
+  stroke: color-star-hover;
 }
