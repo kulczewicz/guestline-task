@@ -1,30 +1,31 @@
 import { useState } from "react";
 import { Hotel, RoomsEntity } from "../../types";
-import { HotelHeader, HotelHeaderProps } from "./HotelHeader";
+import { HotelHeader } from "./HotelHeader";
 import { HotelRoom } from "./HotelRoom/HotelRoom";
 import classes from "./hotels.module.css";
+import appClasses from "../../app.module.css";
 
 interface RoomsInterface {
   rooms: RoomsEntity[];
 }
-function Rooms({ rooms: allRooms }: RoomsInterface) {
-  const [rooms, setRooms] = useState(allRooms.slice(0, numberOfShownRooms));
+const numberOfShownRooms = 3;
+function Rooms({ rooms }: RoomsInterface) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const showAll = () => {
-    setRooms(allRooms);
     setIsCollapsed(false);
   };
   const collapse = () => {
-    setRooms(allRooms.slice(0, numberOfShownRooms));
     setIsCollapsed(true);
   };
 
   return (
     <>
-      {rooms.map((room) => (
-        <HotelRoom key={room.id} {...room} />
-      ))}
-      {allRooms.length > numberOfShownRooms ? (
+      {(isCollapsed ? rooms.slice(0, numberOfShownRooms) : rooms).map(
+        (room) => (
+          <HotelRoom key={room.id} {...room} />
+        )
+      )}
+      {rooms.length > numberOfShownRooms ? (
         <div className={classes.showAllContainer}>
           {isCollapsed ? (
             <button onClick={showAll} className={classes.showAllButton}>
@@ -42,7 +43,6 @@ function Rooms({ rooms: allRooms }: RoomsInterface) {
 }
 
 interface HotelProps extends Hotel {}
-const numberOfShownRooms = 3;
 export function Hotel({ rooms, ...headerProps }: HotelProps) {
   return (
     <div className={classes.hotel}>
@@ -58,9 +58,15 @@ interface HotelsProps {
 export function Hotels({ hotels }: HotelsProps) {
   return (
     <div className={classes.hotels}>
-      {hotels.map((hotelProps) => (
-        <Hotel key={hotelProps.id} {...hotelProps} />
-      ))}
+      {hotels.length < 1 ? (
+        <div className={appClasses.errorEmptyState}>
+          Unfortunately, no hotels match your criteria
+        </div>
+      ) : (
+        hotels.map((hotelProps) => (
+          <Hotel key={hotelProps.id} {...hotelProps} />
+        ))
+      )}
     </div>
   );
 }

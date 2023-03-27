@@ -50,11 +50,14 @@ export function StarRating({ numberOfStars }: StarRatingProps) {
   );
 }
 
+interface StarFilterProps {
+  numberOfStars: number;
+  setNumberOfStars: (stars: number) => void;
+}
 export function StarFilter({
-  numberOfStars: initialNumberOfStars,
-}: StarRatingProps) {
-  const [numberOfStars, setNumberOfStars] = useState(initialNumberOfStars);
-
+  numberOfStars,
+  setNumberOfStars,
+}: StarFilterProps) {
   return (
     <div className={classes.stars}>
       {[1, 2, 3, 4, 5].map((number) => (

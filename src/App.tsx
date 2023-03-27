@@ -5,9 +5,11 @@ import { Filters } from "./components/Filters";
 import { Hotels } from "./components/Hotel";
 import { getHotels } from "./services/getHotels";
 import { Hotel } from "./types";
+import classes from "./app.module.css";
 
 function App() {
-  const [initialHotels, setInitialHotels] = useState<Hotel[]>([]);
+  const [allHotels, setAllHotels] = useState<Hotel[]>([]);
+  const [hotels, setHotels] = useState<Hotel[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,7 +18,7 @@ function App() {
       if (error) {
         setError(String(error));
       } else if (data) {
-        setInitialHotels(data);
+        setAllHotels(data);
       }
     };
     hotelsGetter();
@@ -25,9 +27,9 @@ function App() {
   return (
     <div>
       <Header />
-      <Filters />
-      {error ? <div>{error}</div> : null}
-      <Hotels hotels={initialHotels} />
+      <Filters allHotels={allHotels} setHotels={setHotels} />
+      {error ? <div className={classes.errorEmptyState}>{error}</div> : null}
+      <Hotels hotels={hotels} />
     </div>
   );
 }

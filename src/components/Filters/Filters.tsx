@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Hotel } from "../../types";
 import { StarFilter } from "../Stars";
 import classes from "./filters.module.css";
 
@@ -33,7 +34,16 @@ export function NumberOfVisitors({
   );
 }
 
-export function Filters() {
+interface FiltersProps {
+  allHotels: Hotel[];
+  setHotels: React.Dispatch<React.SetStateAction<Hotel[]>>;
+}
+export function Filters({ allHotels, setHotels }: FiltersProps) {
+  const [hotelsFilteredByRooms, setHotelsFilteredByRooms] = useState<Hotel[]>(
+    []
+  );
+  const [numberOfStars, setNumberOfStars] = useState(3);
+
   const [adultsNumber, setAdultsNumber] = useState(2);
   const [childrenNumber, setChildrenNumber] = useState(0);
 
@@ -50,10 +60,38 @@ export function Filters() {
     setChildrenNumber(decrementIfNonNegative);
   };
 
+  useEffect(() => {
+    const currentHotels: Hotel[] = [];
+    for (const hotel of allHotels) {
+      const filteredRooms =
+        hotel.rooms?.filter(
+          (room) =>
+            adultsNumber <= room.occupancy.maxAdults &&
+            childrenNumber <= room.occupancy.maxChildren
+        ) ?? [];
+
+      const newHotel = { ...hotel, rooms: filteredRooms };
+      if (filteredRooms.length > 0) {
+        currentHotels.push(newHotel);
+      }
+    }
+    setHotelsFilteredByRooms(currentHotels);
+  }, [allHotels, adultsNumber, childrenNumber]);
+
+  useEffect(() => {
+    const currentHotels = hotelsFilteredByRooms.filter(
+      (hotel) => parseInt(hotel.starRating) >= numberOfStars
+    );
+    setHotels(currentHotels);
+  }, [numberOfStars, hotelsFilteredByRooms]);
+
   return (
     <div className={classes.filtersWrapper}>
       <div className={classes.filters}>
-        <StarFilter numberOfStars={3} />
+        <StarFilter
+          numberOfStars={numberOfStars}
+          setNumberOfStars={setNumberOfStars}
+        />
         <NumberOfVisitors
           type="Adults"
           number={adultsNumber}
