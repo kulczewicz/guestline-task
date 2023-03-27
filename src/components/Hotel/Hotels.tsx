@@ -22,7 +22,7 @@ function Rooms({ rooms: allRooms }: RoomsInterface) {
   return (
     <>
       {rooms.map((room) => (
-        <HotelRoom {...room} />
+        <HotelRoom key={room.id} {...room} />
       ))}
       {allRooms.length > numberOfShownRooms ? (
         <div className={classes.showAllContainer}>
