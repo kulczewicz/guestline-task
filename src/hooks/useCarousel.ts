@@ -1,4 +1,4 @@
-import { useState, CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 
 type Direction = "prev" | "next";
 interface GetNewDirectionParams {
@@ -6,6 +6,7 @@ interface GetNewDirectionParams {
   current: number;
   length: number;
 }
+
 function getNewDirection({
   direction,
   current,
@@ -17,23 +18,24 @@ function getNewDirection({
     return current >= length - 1 ? 0 : current + 1;
   }
 }
+
 export function useCarousel(length: number) {
   const [current, setCurrent] = useState(0);
-  const [style, setStyle] = useState<CSSProperties>({
+  const shift = 100 * current;
+  const style: CSSProperties = {
     transition: `transform 400ms ease`,
     flex: "0 0 auto",
     width: "100%",
-  });
-
-  const move = (direction: Direction) => () => {
-    const newCurrent = getNewDirection({ direction, current, length });
-    setCurrent(newCurrent);
-    const shift = 100 * newCurrent;
-    setStyle((style) => ({ ...style, transform: `translateX(-${shift}%)` }));
+    transform: `translateX(-${shift}%)`,
   };
 
-  const prev = move("prev");
-  const next = move("next");
+  const navigate = (direction: Direction) => () => {
+    const newCurrent = getNewDirection({ direction, current, length });
+    setCurrent(newCurrent);
+  };
+
+  const prev = navigate("prev");
+  const next = navigate("next");
 
   return { next, prev, style };
 }

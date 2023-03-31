@@ -10,10 +10,18 @@ export function ImageCarousel({ images }: CarouselProps) {
 
   return images.length > 0 ? (
     <div className={classes.carousel}>
-      <button className={classes.carouselLeftButton} onClick={() => prev()}>
+      <button
+        className={classes.carouselLeftButton}
+        aria-label="Previous Image"
+        onClick={prev}
+      >
         ‹
       </button>
-      <button className={classes.carouselRightButton} onClick={() => next()}>
+      <button
+        className={classes.carouselRightButton}
+        aria-label="Next Image"
+        onClick={next}
+      >
         ›
       </button>
       <ul className={classes.carouselContent}>
