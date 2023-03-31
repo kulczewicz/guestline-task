@@ -204,11 +204,6 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
   integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
 
-"@use-effect/did-update@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@use-effect/did-update/-/did-update-0.0.3.tgz#97078be2508f8f754faa2f7dd8a4cc9e96affeb8"
-  integrity sha512-FAKRuCfR+sz2kXtFzy0nXc4mOacmquAR/qZWYuDTmcJ8vhPCMbM/+mDJTxba9BALxo7gcw4POUHp8PfdCwoemA==
-
 "@vitejs/plugin-react-swc@^3.0.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react-swc/-/plugin-react-swc-3.2.0.tgz#7c4f6e116a296c27f680d05750f9dbf798cf7709"
@@ -361,16 +356,6 @@ typescript@^4.9.3:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
-
-use-carousel-hook@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/use-carousel-hook/-/use-carousel-hook-0.2.1.tgz#73725ef932c150d77827a33e0ed9e32ce86c0e41"
-  integrity sha512-SYra3IJHd/M9bwcIKBi1bxKCIGhdMGYeOcYNH3C7N8jKle2eI6BKfV5Vszjwcsd9Lq6jcrg+xS4qN7ohM0v1LQ==
-
-use-debounce@^9.0.3:
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-9.0.3.tgz#bac660c19ab7b38662e08608fee23c7ad303f532"
-  integrity sha512-FhtlbDtDXILJV7Lix5OZj5yX/fW1tzq+VrvK1fnT2bUrPOGruU9Rw8NCEn+UI9wopfERBEZAOQ8lfeCJPllgnw==
 
 vite@^4.1.0:
   version "4.1.4"

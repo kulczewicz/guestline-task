@@ -1,38 +1,28 @@
+import { useCarousel } from "../../../../hooks/useCarousel";
 import { ImageEntity } from "../../../../types";
 import classes from "./imageCarousel.module.css";
-import { LegacyRef, useEffect, useState } from "react";
-import { useCustomisedCarousel } from "../../../../hooks/useCustomisedCarousel";
 
-interface ImageCarouselProps {
+interface CarouselProps {
   images: ImageEntity[];
 }
+export function ImageCarousel({ images }: CarouselProps) {
+  const { next, prev, style } = useCarousel(images.length);
 
-export function ImageCarousel({ images }: ImageCarouselProps) {
-  const { ref, previous, next, reset } = useCustomisedCarousel();
-
-  if (images.length === 0) {
-    return null;
-  }
-
-  return (
-    <div className={classes.carouselWrapper}>
-      <button className={classes.carouselLeftButton} onClick={() => previous()}>
+  return images.length > 0 ? (
+    <div className={classes.carousel}>
+      <button className={classes.carouselLeftButton} onClick={() => prev()}>
         ‹
       </button>
       <button className={classes.carouselRightButton} onClick={() => next()}>
         ›
       </button>
-      <ul
-        ref={ref as LegacyRef<HTMLUListElement>}
-        className={classes.carouselList}
-      >
+      <ul className={classes.carouselContent}>
         {images.map(({ url, alt }) => (
-          <li key={url} className={classes.carouselItem}>
+          <li style={style} key={url}>
             <img className={classes.carouselImage} src={url} alt={alt ?? ""} />
           </li>
         ))}
       </ul>
-      <div></div>
     </div>
-  );
+  ) : null;
 }
