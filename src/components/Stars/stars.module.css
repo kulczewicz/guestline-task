@@ -5,13 +5,10 @@
   display: flex;
 }
 
-.starOn {
+.starOn,
+.starOnHoverable {
   fill: color-star-fill;
   stroke: color-star-fill;
-}
-
-.starOnHoverable {
-  composes: starOn;
 }
 
 .starOnHoverable:hover {
@@ -19,13 +16,10 @@
   stroke: color-star-hover;
 }
 
-.starOff {
+.starOff,
+.starOffHoverable {
   fill: none;
   stroke: color-star-fill;
-}
-
-.starOffHoverable {
-  composes: starOff;
 }
 
 .starOffHoverable:hover {

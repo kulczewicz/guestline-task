@@ -19,11 +19,12 @@ function getNewDirection({
   }
 }
 
+const WIDTH_100_PERCENT = 100;
 export function useCarousel(length: number) {
   const [current, setCurrent] = useState(0);
-  const shift = 100 * current;
+  const shift = WIDTH_100_PERCENT * current;
   const style: CSSProperties = {
-    transition: `transform 400ms ease`,
+    transition: `transform 500ms ease`,
     flex: "0 0 auto",
     width: "100%",
     transform: `translateX(-${shift}%)`,
