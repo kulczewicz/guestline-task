@@ -14,7 +14,9 @@ export function HotelHeader({
   return (
     <div className={classes.hotelHeader}>
       <div className={classes.hotelHeaderImage}>
-        {Array.isArray(images) ? <ImageCarousel images={images} /> : null}
+        {Array.isArray(images) ? (
+          <ImageCarousel images={images} hotelName={name} />
+        ) : null}
       </div>
       <div className={classes.hotelDetails}>
         <div className={classes.hotelNameAndStarRating}>

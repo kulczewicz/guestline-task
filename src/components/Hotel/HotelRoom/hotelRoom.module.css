@@ -2,17 +2,16 @@
 
 .hotelRoom {
   display: flex;
-  flex-wrap: wrap;
   padding: 0.5rem 0;
   border-top: 1px solid rgb(0, 0, 0, 0.1);
 }
 
 .hotelRoomNameAndVisitors {
+  margin-right: 1rem;
   composes: hotelLeftElement from "../hotels.module.css";
 }
 
 .hotelRoomDescription {
-  min-width: 320px;
   composes: hotelRightElement from "../hotels.module.css";
 }
 
@@ -31,4 +30,15 @@
 .numberOfVisitors {
   font-weight: 500;
   color: var(--color-text-light);
+}
+
+@media screen and (max-width: 600px) {
+  .hotelRoom {
+    flex-direction: column;
+  }
+
+  .hotelRoomNameAndVisitors {
+    margin-right: 0rem;
+    margin-bottom: 1rem;
+  }
 }

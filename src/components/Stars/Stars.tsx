@@ -27,10 +27,15 @@ function StarSVG({ isOn, isHoverable = false }: StarSVGProps) {
 
 interface StarButtonProps extends StarSVGProps {
   onClick: () => void;
+  starRating: number;
 }
-function StarButton({ onClick, ...rest }: StarButtonProps) {
+function StarButton({ onClick, starRating, ...rest }: StarButtonProps) {
   return (
-    <button onClick={onClick}>
+    <button
+      className={classes.starButton}
+      onClick={onClick}
+      aria-label={`Show hotels with rating of at least ${starRating} stars`}
+    >
       <StarSVG {...rest} />
     </button>
   );
@@ -62,6 +67,7 @@ export function StarFilter({
       {[1, 2, 3, 4, 5].map((number) => (
         <StarButton
           key={number}
+          starRating={number}
           isOn={number <= numberOfStars}
           isHoverable
           onClick={() => {

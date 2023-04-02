@@ -3,7 +3,11 @@ import classes from "./header.module.css";
 export function Header() {
   return (
     <div className={classes.header}>
-      <img className={classes.headerImage} src="/header.jpg" />
+      <img
+        className={classes.headerImage}
+        src="/header.jpg"
+        alt="Mountains sunset"
+      />
     </div>
   );
 }

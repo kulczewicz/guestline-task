@@ -6,15 +6,26 @@
   padding-right: 0.25rem;
 }
 
+.starButton {
+}
+
 .starOn,
 .starOnHoverable {
   fill: color-star-fill;
   stroke: color-star-fill;
 }
 
-.starOnHoverable:hover {
+.starButton:hover .starOffHoverable,
+.starButton:hover .starOnHoverable {
   fill: color-star-hover;
   stroke: color-star-hover;
+}
+
+.starButton:active .starOffHoverable,
+.starButton:active .starOnHoverable {
+  transform: scale(0.8);
+  transform-origin: center;
+  transition: transform 50ms linear;
 }
 
 .starOff,
@@ -23,6 +34,7 @@
   stroke: color-star-fill;
 }
 
+.starOnHoverable:hover,
 .starOffHoverable:hover {
   fill: color-star-hover;
   stroke: color-star-hover;

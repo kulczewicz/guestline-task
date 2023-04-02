@@ -27,12 +27,20 @@ function Rooms({ rooms }: RoomsInterface) {
       {rooms.length > numberOfShownRooms ? (
         <div className={classes.showAllContainer}>
           {isCollapsed ? (
-            <button onClick={showAll} className={classes.showAllButton}>
+            <button
+              onClick={showAll}
+              className={classes.showAllButton}
+              aria-label="Show all rooms"
+            >
               Show all ↓
             </button>
           ) : (
-            <button onClick={collapse} className={classes.showAllButton}>
-              Collapse ↑
+            <button
+              onClick={collapse}
+              className={classes.showAllButton}
+              aria-label="Show less rooms"
+            >
+              Show less ↑
             </button>
           )}
         </div>

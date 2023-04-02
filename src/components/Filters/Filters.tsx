@@ -16,7 +16,11 @@ export function NumberOfVisitors({
   return (
     <div className={classes.numberOfVisitors}>
       <span className={classes.visitorsLabel}>{type}: </span>
-      <button className={classes.numberOfVisitorsButton} onClick={increment}>
+      <button
+        className={classes.numberOfVisitorsButton}
+        onClick={increment}
+        aria-label={`Add ${type}`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={classes.numberOfVisitorsSVG}
@@ -26,7 +30,11 @@ export function NumberOfVisitors({
         </svg>
       </button>
       <span className={classes.numberOfVisitorsLabel}>{number}</span>
-      <button className={classes.numberOfVisitorsButton} onClick={decrement}>
+      <button
+        className={classes.numberOfVisitorsButton}
+        onClick={decrement}
+        aria-label={`Subtract ${type}`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={classes.numberOfVisitorsSVG}

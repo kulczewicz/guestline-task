@@ -4,8 +4,9 @@ import classes from "./imageCarousel.module.css";
 
 interface CarouselProps {
   images: ImageEntity[];
+  hotelName: string;
 }
-export function ImageCarousel({ images }: CarouselProps) {
+export function ImageCarousel({ images, hotelName }: CarouselProps) {
   const { next, prev, style } = useCarousel(images.length);
 
   return images.length > 0 ? (
@@ -27,7 +28,11 @@ export function ImageCarousel({ images }: CarouselProps) {
       <ul className={classes.carouselContent}>
         {images.map(({ url, alt }) => (
           <li style={style} key={url}>
-            <img className={classes.carouselImage} src={url} alt={alt ?? ""} />
+            <img
+              className={classes.carouselImage}
+              src={url}
+              alt={alt ?? `${hotelName} image nr. 1`}
+            />
           </li>
         ))}
       </ul>
