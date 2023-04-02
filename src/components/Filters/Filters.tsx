@@ -35,74 +35,40 @@ export function NumberOfVisitors({
 }
 
 interface FiltersProps {
-  allHotels: Hotel[];
-  setHotels: React.Dispatch<React.SetStateAction<Hotel[]>>;
+  adultsNumber: number;
+  changeNumberOfVisitors: (
+    action: "increment" | "decrement",
+    type: "adults" | "children"
+  ) => () => void;
+  childrenNumber: number;
+  numberOfStars: number;
+  changeNumberOfStars: (newNumberOfStars: number) => void;
 }
-export function Filters({ allHotels, setHotels }: FiltersProps) {
-  const [hotelsFilteredByRooms, setHotelsFilteredByRooms] = useState<Hotel[]>(
-    []
-  );
-  const [numberOfStars, setNumberOfStars] = useState(3);
-
-  const [adultsNumber, setAdultsNumber] = useState(2);
-  const [childrenNumber, setChildrenNumber] = useState(0);
-
-  const incrementAdults = () => {
-    setAdultsNumber((number) => number + 1);
-  };
-  const decrementAdults = () => {
-    setAdultsNumber(decrementIfNonNegative);
-  };
-  const incrementChildren = () => {
-    setChildrenNumber((number) => number + 1);
-  };
-  const decrementChildren = () => {
-    setChildrenNumber(decrementIfNonNegative);
-  };
-
-  useEffect(() => {
-    const currentHotels: Hotel[] = [];
-    for (const hotel of allHotels) {
-      const filteredRooms =
-        hotel.rooms?.filter(
-          (room) =>
-            adultsNumber <= room.occupancy.maxAdults &&
-            childrenNumber <= room.occupancy.maxChildren
-        ) ?? [];
-
-      const newHotel = { ...hotel, rooms: filteredRooms };
-      if (filteredRooms.length > 0) {
-        currentHotels.push(newHotel);
-      }
-    }
-    setHotelsFilteredByRooms(currentHotels);
-  }, [allHotels, adultsNumber, childrenNumber]);
-
-  useEffect(() => {
-    const currentHotels = hotelsFilteredByRooms.filter(
-      (hotel) => parseInt(hotel.starRating) >= numberOfStars
-    );
-    setHotels(currentHotels);
-  }, [numberOfStars, hotelsFilteredByRooms]);
-
+export function Filters({
+  adultsNumber,
+  changeNumberOfVisitors,
+  childrenNumber,
+  numberOfStars,
+  changeNumberOfStars,
+}: FiltersProps) {
   return (
     <div className={classes.filtersWrapper}>
       <div className={classes.filters}>
         <StarFilter
           numberOfStars={numberOfStars}
-          setNumberOfStars={setNumberOfStars}
+          changeNumberOfStars={changeNumberOfStars}
         />
         <NumberOfVisitors
           type="Adults"
           number={adultsNumber}
-          increment={incrementAdults}
-          decrement={decrementAdults}
+          increment={changeNumberOfVisitors("increment", "adults")}
+          decrement={changeNumberOfVisitors("decrement", "adults")}
         />
         <NumberOfVisitors
           type="Children"
           number={childrenNumber}
-          increment={incrementChildren}
-          decrement={decrementChildren}
+          increment={changeNumberOfVisitors("increment", "children")}
+          decrement={changeNumberOfVisitors("decrement", "children")}
         />
       </div>
     </div>

@@ -3,7 +3,6 @@ import { Hotel, RoomsEntity } from "../../types";
 import { HotelHeader } from "./HotelHeader";
 import { HotelRoom } from "./HotelRoom/HotelRoom";
 import classes from "./hotels.module.css";
-import appClasses from "../../app.module.css";
 
 interface RoomsInterface {
   rooms: RoomsEntity[];
@@ -42,11 +41,24 @@ function Rooms({ rooms }: RoomsInterface) {
   );
 }
 
-interface HotelProps extends Hotel {}
-export function Hotel({ rooms, ...headerProps }: HotelProps) {
+interface HotelProps extends Omit<Hotel, "id"> {}
+export function Hotel({
+  address1,
+  address2,
+  name,
+  starRating,
+  images,
+  rooms,
+}: HotelProps) {
   return (
     <div className={classes.hotel}>
-      <HotelHeader {...headerProps} />
+      <HotelHeader
+        name={name}
+        address1={address1}
+        address2={address2}
+        starRating={starRating}
+        images={images}
+      />
       {Array.isArray(rooms) ? <Rooms rooms={rooms} /> : null}
     </div>
   );
@@ -58,15 +70,11 @@ interface HotelsProps {
 export function Hotels({ hotels }: HotelsProps) {
   return (
     <div className={classes.hotels}>
-      {hotels.length < 1 ? (
-        <div className={appClasses.errorEmptyState}>
-          Unfortunately, no hotels match your criteria
+      {hotels.map(({ id, ...hotelProps }) => (
+        <div key={id}>
+          <Hotel {...hotelProps} />
         </div>
-      ) : (
-        hotels.map((hotelProps) => (
-          <Hotel key={hotelProps.id} {...hotelProps} />
-        ))
-      )}
+      ))}
     </div>
   );
 }

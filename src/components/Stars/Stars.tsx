@@ -52,11 +52,11 @@ export function StarRating({ numberOfStars }: StarRatingProps) {
 
 interface StarFilterProps {
   numberOfStars: number;
-  setNumberOfStars: (stars: number) => void;
+  changeNumberOfStars: (newNumberOfStars: number) => void;
 }
 export function StarFilter({
   numberOfStars,
-  setNumberOfStars,
+  changeNumberOfStars,
 }: StarFilterProps) {
   return (
     <div className={classes.stars}>
@@ -66,7 +66,7 @@ export function StarFilter({
           isOn={number <= numberOfStars}
           isHoverable
           onClick={() => {
-            setNumberOfStars(number);
+            changeNumberOfStars(number);
           }}
         />
       ))}

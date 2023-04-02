@@ -3,7 +3,7 @@ import { StarRating } from "../../Stars";
 import classes from "./hotelHeader.module.css";
 import { ImageCarousel } from "./ImageCarousel";
 
-export interface HotelHeaderProps extends Omit<Hotel, "rooms"> {}
+export interface HotelHeaderProps extends Omit<Hotel, "rooms" | "id"> {}
 export function HotelHeader({
   name,
   address1,

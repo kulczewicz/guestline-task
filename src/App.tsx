@@ -1,35 +1,36 @@
-import { useEffect, useState } from "react";
 import { Header } from "./components/Header/Header";
 import "./app.module.css";
 import { Filters } from "./components/Filters";
 import { Hotels } from "./components/Hotel";
-import { getHotels } from "./services/getHotels";
-import { Hotel } from "./types";
 import classes from "./app.module.css";
+import { useHotels } from "./hooks/useHotels";
+import { Spinner } from "./components/Spinner/Spinner";
 
 function App() {
-  const [allHotels, setAllHotels] = useState<Hotel[]>([]);
-  const [hotels, setHotels] = useState<Hotel[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const hotelsGetter = async () => {
-      const { data, error } = await getHotels();
-      if (error) {
-        setError(String(error));
-      } else if (data) {
-        setAllHotels(data);
-      }
-    };
-    hotelsGetter();
-  }, []);
+  const {
+    hotels,
+    error,
+    loading,
+    adultsNumber,
+    childrenNumber,
+    changeNumberOfVisitors,
+    numberOfStars,
+    changeNumberOfStars,
+  } = useHotels();
 
   return (
     <div>
       <Header />
-      <Filters allHotels={allHotels} setHotels={setHotels} />
+      <Filters
+        adultsNumber={adultsNumber}
+        changeNumberOfVisitors={changeNumberOfVisitors}
+        childrenNumber={childrenNumber}
+        numberOfStars={numberOfStars}
+        changeNumberOfStars={changeNumberOfStars}
+      />
+      {loading ? <Spinner /> : null}
       {error ? <div className={classes.errorEmptyState}>{error}</div> : null}
-      <Hotels hotels={hotels} />
+      {Array.isArray(hotels) ? <Hotels hotels={hotels} /> : null}
     </div>
   );
 }
