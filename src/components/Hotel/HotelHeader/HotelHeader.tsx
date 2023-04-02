@@ -16,13 +16,13 @@ export function HotelHeader({
       <div className={classes.hotelHeaderImage}>
         {Array.isArray(images) ? <ImageCarousel images={images} /> : null}
       </div>
-      <div className={classes.hotelDetailsAndRating}>
-        <div>
+      <div className={classes.hotelDetails}>
+        <div className={classes.hotelNameAndStarRating}>
           <h2 className={classes.hotelName}>{name}</h2>
-          <p className={classes.hotelAddress1}>{address1}</p>
-          <p className={classes.hotelAddress2}>{address2}</p>
+          <StarRating numberOfStars={parseInt(starRating)} />
         </div>
-        <StarRating numberOfStars={parseInt(starRating)} />
+        <p className={classes.hotelAddress1}>{address1}</p>
+        <p className={classes.hotelAddress2}>{address2}</p>
       </div>
     </div>
   );

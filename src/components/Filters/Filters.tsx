@@ -1,12 +1,5 @@
-import { useEffect, useState } from "react";
-import { Hotel } from "../../types";
 import { StarFilter } from "../Stars";
 import classes from "./filters.module.css";
-
-function decrementIfNonNegative(number: number) {
-  const newNumber = number - 1;
-  return newNumber < 0 ? number : newNumber;
-}
 
 interface NumberOfVisitorsProps {
   type: "Adults" | "Children";
@@ -21,14 +14,26 @@ export function NumberOfVisitors({
   decrement,
 }: NumberOfVisitorsProps) {
   return (
-    <div>
-      <span className={classes.numberOfVisitorsLabel}>{type}: </span>
+    <div className={classes.numberOfVisitors}>
+      <span className={classes.visitorsLabel}>{type}: </span>
       <button className={classes.numberOfVisitorsButton} onClick={increment}>
-        +
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={classes.numberOfVisitorsSVG}
+          viewBox="0 0 24 24"
+        >
+          <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
+        </svg>
       </button>
       <span className={classes.numberOfVisitorsLabel}>{number}</span>
       <button className={classes.numberOfVisitorsButton} onClick={decrement}>
-        -
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={classes.numberOfVisitorsSVG}
+          viewBox="0 0 24 24"
+        >
+          <path d="M0 10h24v4h-24z" />
+        </svg>
       </button>
     </div>
   );

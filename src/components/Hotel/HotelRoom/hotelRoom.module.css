@@ -2,6 +2,7 @@
 
 .hotelRoom {
   display: flex;
+  flex-wrap: wrap;
   padding: 0.5rem 0;
   border-top: 1px solid rgb(0, 0, 0, 0.1);
 }
@@ -11,6 +12,7 @@
 }
 
 .hotelRoomDescription {
+  min-width: 320px;
   composes: hotelRightElement from "../hotels.module.css";
 }
 

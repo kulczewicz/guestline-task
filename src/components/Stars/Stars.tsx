@@ -1,4 +1,3 @@
-import { useState } from "react";
 import classes from "./stars.module.css";
 
 interface StarSVGProps {

@@ -1,3 +1,5 @@
+@import "../../index.css";
+
 .filtersWrapper {
   display: flex;
   width: 100%;
@@ -11,18 +13,41 @@
   align-items: center;
   padding: 0.5rem;
   background-color: #fff;
-  height: 3rem;
-  margin-top: -2rem;
+  margin: -2rem 0.5rem 0;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .numberOfVisitors {
   display: flex;
+  margin: 0.25rem 0;
+}
+
+.visitorsLabel {
+  font-size: 1.125rem;
+  padding: 0 0.5rem;
 }
 
 .numberOfVisitorsLabel {
-  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  min-width: 1.25rem;
+  font-size: 1.25rem;
+  padding: 0 0.25rem;
 }
 
 .numberOfVisitorsButton {
-  font-size: 1.5em;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 0.5px solid;
+  border-color: var(--color-text-light);
+  border-radius: 0.75rem;
+}
+
+.numberOfVisitorsSVG {
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: var(--color-text-light);
 }
