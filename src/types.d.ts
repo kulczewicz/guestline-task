@@ -84,4 +84,12 @@ export interface HotelData
     HotelResponseData,
     "id" | "name" | "address1" | "address2" | "starRating" | "images"
   > {}
-export interface Hotel extends HotelData, Pick<RoomRateResponseData, "rooms"> {}
+
+export interface Room
+  extends Pick<
+    RoomsEntity,
+    "id" | "name" | "occupancy" | "shortDescription" | "longDescription"
+  > {}
+export interface Hotel extends HotelData {
+  rooms: Room[];
+}

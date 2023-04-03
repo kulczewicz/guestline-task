@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Hotel, RoomsEntity } from "../../types";
+import type { Hotel, Room, RoomsEntity } from "../../types";
 import { HotelHeader } from "./HotelHeader";
 import { HotelRoom } from "./HotelRoom/HotelRoom";
 import classes from "./hotels.module.css";
 
 interface RoomsInterface {
-  rooms: RoomsEntity[];
+  rooms: Room[];
 }
 const numberOfShownRooms = 3;
 function Rooms({ rooms }: RoomsInterface) {

@@ -1,0 +1,1 @@
+export { getHotels } from "./getHotels";

@@ -1,8 +1,8 @@
-import { RoomsEntity } from "../../../types";
+import { Room } from "../../../types";
 import classes from "./hotelRoom.module.css";
 
 interface GetDescriptionParams
-  extends Pick<RoomsEntity, "shortDescription" | "longDescription"> {}
+  extends Pick<Room, "shortDescription" | "longDescription"> {}
 function getDescription({
   shortDescription,
   longDescription,
@@ -18,7 +18,7 @@ function getDescription({
     : longDescription;
 }
 
-interface HotelRoomProps extends RoomsEntity {}
+interface HotelRoomProps extends Room {}
 export function HotelRoom({
   name,
   occupancy: { maxAdults, maxChildren },
