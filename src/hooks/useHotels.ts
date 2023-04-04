@@ -87,7 +87,6 @@ export function useHotels() {
         setLoading(false);
         setError(null);
 
-        // under the hood
         setAllHotels(data);
         const hotelsFilteredByRooms = filterHotelsByRooms({
           hotels: data,
