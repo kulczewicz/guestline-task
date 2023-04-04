@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Hotel, Room, RoomsEntity } from "../../types";
+import type { Hotel, Room } from "../../types";
 import { HotelHeader } from "./HotelHeader";
 import { HotelRoom } from "./HotelRoom/HotelRoom";
 import classes from "./hotels.module.css";
