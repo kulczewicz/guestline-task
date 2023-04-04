@@ -1,17 +1,13 @@
 import * as populate from "../populateHotelsWithRooms";
-import * as fetchData from "../../../fetchData";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import * as fetchData from "../../fetchData";
+import { describe, expect, it, vi } from "vitest";
 
-import {
-  hotelDetailsMock,
-  serialisedHotelMock1,
-  serialisedHotelMock2,
-} from "./hotelDetailsMock";
+import { hotelDetailsMock } from "./__mocks__/hotelDetailsMock";
+import { serialisedHotelsMock } from "../fetchHotels/__mocks__/hotelsMock";
 
 const errorMessage = "oops";
-const serialisedHotels = [serialisedHotelMock1, serialisedHotelMock2];
 
-vi.mock("../../../fetchData", () => {
+vi.mock("../../fetchData", () => {
   return {
     fetchData: vi
       .fn()
@@ -25,20 +21,15 @@ vi.mock("../../../fetchData", () => {
 });
 
 describe("populateHotelsWithRooms.test", () => {
-  beforeEach(() => {
-    vi.spyOn(populate, "populateHotelsWithRooms");
-    vi.spyOn(fetchData, "fetchData");
-  });
-
   describe("fetchData resolves with hotels array", () => {
     it("resolves", async () => {
       const populatedHotels = await populate.populateHotelsWithRooms(
-        serialisedHotels
+        serialisedHotelsMock
       );
       expect(fetchData.fetchData).toBeCalledTimes(2);
       expect(populatedHotels.length).toBe(2);
       populatedHotels.forEach(({ rooms, ...hotel }, index) => {
-        expect(hotel).toEqual(serialisedHotels[index]);
+        expect(hotel).toEqual(serialisedHotelsMock[index]);
         expect(rooms).toBeDefined();
         rooms.forEach(
           (
@@ -47,7 +38,9 @@ describe("populateHotelsWithRooms.test", () => {
           ) => {
             expect(id).toBe(hotelDetailsMock.rooms[roomIndex].id);
             expect(name).toBe(hotelDetailsMock.rooms[roomIndex].name);
-            expect(occupancy).toBe(hotelDetailsMock.rooms[roomIndex].occupancy);
+            expect(occupancy).toEqual(
+              hotelDetailsMock.rooms[roomIndex].occupancy
+            );
             expect(longDescription).toBe(
               hotelDetailsMock.rooms[roomIndex].longDescription
             );
@@ -63,7 +56,8 @@ describe("populateHotelsWithRooms.test", () => {
   describe("fetchData rejects with error", () => {
     it("throws error", async () => {
       try {
-        await populate.populateHotelsWithRooms(serialisedHotels);
+        await populate.populateHotelsWithRooms(serialisedHotelsMock);
+        expect(populate.populateHotelsWithRooms).toThrow(errorMessage);
       } catch (error) {
         expect(error).toBe(errorMessage);
       }

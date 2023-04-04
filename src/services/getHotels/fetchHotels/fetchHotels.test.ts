@@ -1,12 +1,12 @@
 import * as fetchHotels from "../fetchHotels";
-import * as fetchData from "../../../fetchData";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import * as fetchData from "../../fetchData";
+import { describe, expect, it, vi } from "vitest";
 
-import { hotelsMock } from "./hotelsMock";
+import { hotelsMock } from "./__mocks__/hotelsMock";
 
 const errorMessage = "oops";
 
-vi.mock("../../../fetchData", () => {
+vi.mock("../../fetchData", () => {
   return {
     fetchData: vi
       .fn()
@@ -17,11 +17,6 @@ vi.mock("../../../fetchData", () => {
 });
 
 describe("fetchHotels", () => {
-  beforeEach(() => {
-    vi.spyOn(fetchHotels, "fetchHotels");
-    vi.spyOn(fetchData, "fetchData");
-  });
-
   describe("fetchData resolves with hotels array", () => {
     it("resolves", async () => {
       const hotelsData = await fetchHotels.fetchHotels();

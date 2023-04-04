@@ -1,25 +1,62 @@
 import * as getHotels from "../getHotels";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import * as fetchHotels from "./fetchHotels";
 import * as populateHotels from "./populateHotelsWithRooms";
+import { serialisedHotelsMock } from "./fetchHotels/__mocks__/hotelsMock";
+import { hotelSerialisedRoomsMock } from "./populateHotelsWithRooms/__mocks__/hotelDetailsMock";
 
+const fetchHotelsError = "fetchHotels error";
+const populateHotelsWithRoomsError = "populateHotelsWithRooms error";
 vi.mock("./fetchHotels", () => {
   return {
-    fetchHotels: vi.fn().mockImplementationOnce(() => Promise.resolve({})),
+    fetchHotels: vi
+      .fn()
+      .mockImplementationOnce(() => Promise.resolve(serialisedHotelsMock))
+      .mockImplementationOnce(() => Promise.reject(fetchHotelsError))
+      .mockImplementationOnce(() => Promise.resolve(serialisedHotelsMock)),
   };
 });
+
+const populatedHotels = serialisedHotelsMock.map((hotel) => ({
+  ...hotel,
+  rooms: hotelSerialisedRoomsMock,
+}));
 
 vi.mock("./populateHotelsWithRooms", () => {
   return {
     populateHotelsWithRooms: vi
       .fn()
-      .mockImplementationOnce(() => Promise.resolve({})),
+      .mockImplementationOnce(() => Promise.resolve(populatedHotels))
+      .mockImplementationOnce(() =>
+        Promise.reject(populateHotelsWithRoomsError)
+      ),
   };
 });
 
 describe("getHotels", () => {
-  beforeEach(() => {
-    vi.spyOn(getHotels, "getHotels");
+  it("works properly", async () => {
+    const result = await getHotels.getHotels();
+    expect(fetchHotels.fetchHotels).toHaveBeenCalledOnce();
+    expect(populateHotels.populateHotelsWithRooms).toHaveBeenCalledOnce();
+    expect(populateHotels.populateHotelsWithRooms).toBeCalledWith(
+      serialisedHotelsMock
+    );
+    expect(result.data).toEqual(populatedHotels);
   });
-  it("", () => {});
+
+  describe("hmm", () => {
+    it("fetchHotels throws an error", async () => {
+      const { data, error } = await getHotels.getHotels();
+      expect(error).toBe(fetchHotelsError);
+      expect(data).toBeUndefined();
+    });
+  });
+
+  describe("hmm", () => {
+    it("populateHotelsWithRooms throws an error", async () => {
+      const { data, error } = await getHotels.getHotels();
+      expect(error).toBe(populateHotelsWithRoomsError);
+      expect(data).toBeUndefined();
+    });
+  });
 });
