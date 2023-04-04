@@ -55,7 +55,7 @@ On the number of visitors (room occupancy) change:
 1. `hotelsFilteredByStars` are filtered by room occupancy and set to `filteredHotels` -> components are updated.
 2. As the number of visitors changes, `allHotels` are filtered by room occupancy and set to `hotelsFilteredByRooms`.
 
-On the star rating changes:
+On the star rating change:
 
 1. `hotelsFilteredByRooms` are filtered by star rating and set to `filteredHotels` -> components are updated.
    As the star rating change, `allHotels` are filtered by star rating and set to `hotelsFilteredByStars`.
