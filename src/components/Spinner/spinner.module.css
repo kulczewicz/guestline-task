@@ -8,7 +8,7 @@
   width: 2rem;
   height: 2rem;
   border: 0.5rem solid transparent;
-  border-color: #eee;
+  border-color: var(--color-text-lightest);
   border-top-color: var(--color-text-light);
   border-radius: 50%;
   animation: loadingspin 0.75s linear infinite;

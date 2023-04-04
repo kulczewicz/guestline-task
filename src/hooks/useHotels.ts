@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getHotels } from "../services/getHotels";
-import { Hotel } from "../types";
+import { Hotel, ImageEntity } from "../types";
 
 function decrementIfNonNegative(number: number) {
   const newNumber = number - 1;
@@ -34,6 +34,15 @@ function filterHotelsByRooms({
   return currentHotels;
 }
 
+function getImagesFromHotels(hotels: Hotel[]) {
+  return hotels.reduce((acc, { images }) => {
+    if (images) {
+      acc.push(...images);
+    }
+    return acc;
+  }, [] as ImageEntity[]);
+}
+
 interface FilterHotelsByStarsParams {
   hotels: Hotel[];
   numberOfStars: number;
@@ -50,6 +59,7 @@ const INITIAL_NUMBER_OF_ADULTS = 2;
 const INITIAL_NUMBER_OF_CHILDREN = 0;
 export function useHotels() {
   const [allHotels, setAllHotels] = useState<Hotel[]>([]);
+  const [allImages, setAllImages] = useState<ImageEntity[]>([]);
   const [hotelsFilteredByRooms, setHotelsFilteredByRooms] = useState<Hotel[]>(
     []
   );
@@ -73,6 +83,8 @@ export function useHotels() {
       if (error) {
         setError(String(error));
       } else if (data) {
+        setAllImages(getImagesFromHotels(data));
+
         const hotelsFilteredByStars = filterHotelsByStars({
           hotels: data,
           numberOfStars,
@@ -155,6 +167,7 @@ export function useHotels() {
 
   return {
     hotels: filteredHotels,
+    allImages,
     error,
     loading,
     adultsNumber,

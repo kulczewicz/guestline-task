@@ -8,6 +8,7 @@ import { Spinner } from "./components/Spinner/Spinner";
 function App() {
   const {
     hotels,
+    allImages,
     error,
     loading,
     adultsNumber,
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header allImages={allImages} />
       <Filters
         adultsNumber={adultsNumber}
         changeNumberOfVisitors={changeNumberOfVisitors}
