@@ -34,7 +34,7 @@ The purpose of the app is to display the list of hotels from the given API with 
 
 ### Fetching
 
-To fetch the hotel data with room data, the app has to perform one request to download the basic hotel data and for each hotel perform a request for the hotel details, namely the hotels' rooms. All the fetching logic can be found in `src/services` folder, which exports the main getHotels function.
+To fetch the hotel data with room data, the app has to perform one request to download the basic hotel data and for each hotel perform a request for the hotel details, namely the hotels' rooms. All the fetching logic can be found in `src/services` folder, which exports the main `getHotels` function.
 
 ### Filtering
 
